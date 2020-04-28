@@ -151,7 +151,7 @@ songplay_table_insert = ("""
             se.sessionId                AS session_id,
             se.location                 AS location,
             se.userAgent                AS user_agent
-    FROM staging_events AS se
+    FROM songplays AS se
     JOIN staging_songs AS ss ON (se.song = ss.title AND se.artist = ss.artist_name)
     WHERE se.page = 'NextSong';
 """)
@@ -168,7 +168,7 @@ user_table_insert = ("""
             se.lastName         AS last_name,
             se.gender           AS gender,
             se.level            AS level
-    FROM staging_events AS se
+    FROM songplays AS se
     WHERE se.page = 'NextSong';
 """)
 
@@ -219,7 +219,7 @@ time_table_insert = ("""
             EXTRACT(month FROM start_time)   AS month,
             EXTRACT(year FROM start_time)    AS year,
             EXTRACT(week FROM start_time)    AS weekday
-    FROM    staging_events                   AS se
+    FROM    songplays                   AS se
     WHERE se.page = 'NextSong';
 """)
 
