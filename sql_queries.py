@@ -18,40 +18,40 @@ time_table_drop = "DROP TABLE IF EXISTS time"
 
 staging_events_table_create = ("""
     CREATE TABLE IF NOT EXISTS staging_events (
-        event_id    BIGINT IDENTITY(0,1)    NOT NULL,
-        artist      VARCHAR                 NULL,
-        auth        VARCHAR                 NULL,
-        firstName   VARCHAR                 NULL,
-        gender      VARCHAR                 NULL,
-        itemInSession VARCHAR               NULL,
-        lastName    VARCHAR                 NULL,
-        length      VARCHAR                 NULL,
-        level       VARCHAR                 NULL,
-        location    VARCHAR                 NULL,
-        method      VARCHAR                 NULL,
-        page        VARCHAR                 NULL,
-        registration VARCHAR                NULL,
-        sessionId   INTEGER                 NOT NULL SORTKEY DISTKEY,
-        song        VARCHAR                 NULL,
-        status      INTEGER                 NULL,
-        ts          BIGINT                  NOT NULL,
-        userAgent   VARCHAR                 NULL,
-        userId      INTEGER                 NULL
+        event_id    BIGINT IDENTITY(0,1),
+        artist      VARCHAR,
+        auth        VARCHAR,
+        firstName   VARCHAR,
+        gender      VARCHAR,
+        itemInSession VARCHAR,
+        lastName    VARCHAR,
+        length      VARCHAR,
+        level       VARCHAR,
+        location    VARCHAR,
+        method      VARCHAR,
+        page        VARCHAR,
+        registration VARCHAR,
+        sessionId   INTEGER SORTKEY DISTKEY,
+        song        VARCHAR,
+        status      INTEGER,
+        ts          BIGINT,
+        userAgent   VARCHAR,
+        userId      INTEGER
     );
 """)
 
 staging_songs_table_create = ("""
     CREATE TABLE IF NOT EXISTS staging_songs (
-        num_songs           INTEGER         NULL,
-        artist_id           VARCHAR         NOT NULL SORTKEY DISTKEY,
-        artist_latitude     VARCHAR         NULL,
-        artist_longitude    VARCHAR         NULL,
-        artist_location     VARCHAR(500)    NULL,
-        artist_name         VARCHAR(500)    NULL,
-        song_id             VARCHAR         NOT NULL,
-        title               VARCHAR(500)    NULL,
-        duration            DECIMAL(9)      NULL,
-        year                INTEGER         NULL
+        num_songs           INTEGER,
+        artist_id           VARCHAR SORTKEY DISTKEY,
+        artist_latitude     VARCHAR,
+        artist_longitude    VARCHAR,
+        artist_location     VARCHAR(500),
+        artist_name         VARCHAR(500),
+        song_id             VARCHAR,
+        title               VARCHAR(500),
+        duration            DECIMAL(9),
+        year                INTEGER
     );
 """)
 
@@ -152,8 +152,8 @@ songplay_table_insert = ("""
             se.location                 AS location,
             se.userAgent                AS user_agent
     FROM staging_events AS se
-    JOIN staging_songs AS ss
-        ON (se.artist = ss.artist_name)
+    JOIN staging_songs AS ss ON (se.song = ss.title AND se.artist = ss.artist_name)
+            AND se.page  ==  'NextSong'
     WHERE se.page = 'NextSong';
 """)
 
