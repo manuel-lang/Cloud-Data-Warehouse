@@ -15,7 +15,7 @@ This projects processes data from different sources (in this case multiple S3 bu
 2. Create the needed the database structure by executing `create_tables.py`.
 3. Process the data from the configured S3 data sources by executing `etl.py`.
 
-## Database schem
+## Database schema
 | Table | Description |
 | ---- | ---- |
 | staging_events | stating table for event data |
