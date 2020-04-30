@@ -1,6 +1,6 @@
 # Data Warehouse
 
-Project Data Warehouse as part of the Udactiy Data Engineer Nanodegree.
+Project Data Warehouse as part of the Udactiy Data Engineering Nanodegree.
 
 ## Project Summary
 An implementation of a Data Warehouse leveraging AWS RedShift. This projects contains the ETL pipeline that extracts data from S3, stages them in Redshift, and transforms data into a set of dimensional tables for their analytics team.
