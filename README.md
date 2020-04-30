@@ -33,5 +33,11 @@ This projects processes data from different sources (in this case multiple S3 bu
 
 ## Example queries
 
-* Find all users at a certain location: ```SELECT DISTINCT users.user_id FROM users JOIN songplays ON songplays.user_id = users.user_id WHERE songplays.location = <LOCATION>```
-* Find all songs by a given artist: ```SELECT songs.song_id FROM songs JOIN artists ON songs.artist_id = artists.artist_id WHERE artist.name = <ARTIST>```
+* Find all users at a certain location: 
+```sql 
+SELECT DISTINCT users.user_id FROM users JOIN songplays ON songplays.user_id = users.user_id WHERE songplays.location = <LOCATION>
+```
+* Find all songs by a given artist: 
+```sql 
+SELECT songs.song_id FROM songs JOIN artists ON songs.artist_id = artists.artist_id WHERE artist.name = <ARTIST>
+```
